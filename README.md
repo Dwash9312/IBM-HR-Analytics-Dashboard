@@ -17,7 +17,7 @@ The goal is to help HR teams understand why employees leave and what factors inf
 ## 📂 Files Included
 - `HR-Analytics-Dashboard.pbix` → Power BI file
 - `HR-Dataset.csv` → kaggle dataset used
-- `Screenshots/` → Dashboard images
+- `Screenshot/` → Dashboard images
 - `DAX-Measures.txt` → List of custom DAX calculations
 - `README.md` → Project documentation
 
