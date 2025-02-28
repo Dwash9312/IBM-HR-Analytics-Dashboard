@@ -23,7 +23,7 @@ The goal is to help HR teams understand why employees leave and what factors inf
 
 ## 📸 Dashboard Screenshots
 ### 1️⃣ HR Attrition Overview
-![Dashboard Overview](Screenshot/DashBoard-Overview.png)
+![Dashboard Overview](Screenshot/DashBoard_Overview.png)
 
 ### 2️⃣ Job Satisfaction vs. Attrition
 ![Job Satisfaction Chart](Screenshot/Job_Satisfaction_vs_Attrition.png)
