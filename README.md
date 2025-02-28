@@ -32,5 +32,5 @@ The goal is to help HR teams understand why employees leave and what factors inf
 ![Gender-Wise Attrition](Screenshot/Attrition_by_Gender.png)
 
 ## 🔗 Links to Full Analysis
-📖 **Medium Blog Post**: [Read the full analysis]([your-medium-link.com](https://medium.com/@darianwashington8/hr-attrition-dashboard-how-i-used-power-bi-to-analyze-employee-turnover-361fdd0b4e47))
-💼 **Portfolio**: [View All My Projects]([your-portfolio-link.com](https://www.datascienceportfol.io/Darianwashington8/projects/2))
+📖 **Medium Blog Post**: [Read the full analysis](https://medium.com/@darianwashington8/hr-attrition-dashboard-how-i-used-power-bi-to-analyze-employee-turnover-361fdd0b4e47)
+💼 **Portfolio**: [View All My Projects](https://www.datascienceportfol.io/Darianwashington8/projects/2)
