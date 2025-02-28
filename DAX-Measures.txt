@@ -1,0 +1,89 @@
+# DAX Measures for HR Analytics Dashboard
+# Created by Darian Washington
+
+------------------------------------------------
+# 1. Attrition Rate (%)
+# Calculates the percentage of employees who left the company.
+------------------------------------------------
+Attrition Rate (%) =
+VAR TotalEmployees = COUNTROWS('IBM-HR-Employee-Attrition')
+VAR AttritionCount = COUNTROWS(FILTER('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[Attrition] = "Yes"))
+RETURN DIVIDE(AttritionCount, TotalEmployees, 0) * 100
+
+------------------------------------------------
+# 2. Attrition Rate by Job Satisfaction
+# Determines attrition rate based on employee job satisfaction levels.
+------------------------------------------------
+Attrition Rate by Job Satisfaction =
+VAR TotalEmployees =
+CALCULATE(COUNT('IBM-HR-Employee-Attrition'[EmployeeNumber]),
+ALLEXCEPT('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[JobSatisfaction]))
+
+VAR AttritionCount =
+CALCULATE(COUNT('IBM-HR-Employee-Attrition'[EmployeeNumber]),
+'IBM-HR-Employee-Attrition'[Attrition] = "Yes",
+ALLEXCEPT('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[JobSatisfaction]))
+
+RETURN
+IF(TotalEmployees > 0, DIVIDE(AttritionCount, TotalEmployees, 0) * 100, 0)
+
+------------------------------------------------
+# 3. Total Employees
+# Counts the total number of employees in the dataset.
+------------------------------------------------
+Total Employees = COUNTROWS('IBM-HR-Employee-Attrition')
+
+------------------------------------------------
+# 4. Total Attrition (Employees Who Left)
+# Counts the number of employees who have left the company.
+------------------------------------------------
+Total Attrition = COUNTROWS(FILTER('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[Attrition] = "Yes"))
+
+------------------------------------------------
+# 5. Average Monthly Income
+# Calculates the average monthly income of employees.
+------------------------------------------------
+Avg Monthly Income = AVERAGE('IBM-HR-Employee-Attrition'[MonthlyIncome])
+
+------------------------------------------------
+# 6. Attrition Rate by Department
+# Calculates the attrition rate per department.
+------------------------------------------------
+Attrition Rate by Department =
+VAR TotalDeptEmployees = COUNTROWS('IBM-HR-Employee-Attrition')
+VAR DeptAttrition = COUNTROWS(FILTER('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[Attrition] = "Yes"))
+RETURN DIVIDE(DeptAttrition, TotalDeptEmployees, 0) * 100
+
+------------------------------------------------
+# 7. Attrition Rate by Gender
+# Compares attrition rates for male vs. female employees.
+------------------------------------------------
+Attrition Rate by Gender =
+VAR GenderTotal =
+CALCULATE(COUNT('IBM-HR-Employee-Attrition'[EmployeeNumber]),
+ALLEXCEPT('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[Gender]))
+
+VAR GenderAttrition =
+CALCULATE(COUNT('IBM-HR-Employee-Attrition'[EmployeeNumber]),
+'IBM-HR-Employee-Attrition'[Attrition] = "Yes",
+ALLEXCEPT('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[Gender]))
+
+RETURN
+IF(GenderTotal > 0, DIVIDE(GenderAttrition, GenderTotal, 0) * 100, 0)
+
+------------------------------------------------
+# 8. Promotion History vs. Attrition
+# Determines the impact of promotions on attrition.
+------------------------------------------------
+Attrition Rate by Promotion =
+VAR TotalPromoted =
+CALCULATE(COUNT('IBM-HR-Employee-Attrition'[EmployeeNumber]),
+ALLEXCEPT('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[YearsSinceLastPromotion]))
+
+VAR PromotedAttrition =
+CALCULATE(COUNT('IBM-HR-Employee-Attrition'[EmployeeNumber]),
+'IBM-HR-Employee-Attrition'[Attrition] = "Yes",
+ALLEXCEPT('IBM-HR-Employee-Attrition', 'IBM-HR-Employee-Attrition'[YearsSinceLastPromotion]))
+
+RETURN
+IF(TotalPromoted > 0, DIVIDE(PromotedAttrition, TotalPromoted, 0) * 100, 0)
